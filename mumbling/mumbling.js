@@ -8,10 +8,14 @@
 // accum("cwAt") -> "C-Ww-Aaa-Tttt"
 // The parameter of accum is a string which includes only letters from a..z and A..Z.
 
-accum (letters) {
-	let accumString = ""
-	for (i=0; i < letters.length; i++) {
-		accumString += letters[i].toUpperCase() + letter[i].toLowerCase().repeat(i) + "-"
+const accum = (letters) => {
+  let accumString = "";
+  for (i = 0; i < letters.length; i++) {
+    accumString +=
+      letters[i].toUpperCase() + letters[i].toLowerCase().repeat(i);
+    if (i < letters.length - 1) {
+      accumString += "-";
+    }
   }
-	return accumString
-}
+  return accumString;
+};
