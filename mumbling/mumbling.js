@@ -19,3 +19,29 @@ const accum = (letters) => {
   }
   return accumString;
 };
+
+//ANOTHER SOLUTION
+const accm = (input) => {
+  output = "";
+  arr = input.split("");
+  arr.forEach((letter, index) => {
+    output += letter.toUpperCase();
+    for (let x = 0; x <= index; x++) {
+      output += letter.toLowerCase();
+    }
+    if (index < input.length - 1) {
+      output += "-";
+    }
+  });
+  return output;
+};
+
+//BETTER SOLUTION
+const accum = (input) => {
+  return input
+    .split("")
+    .map((letter, index) => {
+      return letter.toUpperCase() + letter.toLowerCase().repeat(index);
+    })
+    .join("-");
+};
