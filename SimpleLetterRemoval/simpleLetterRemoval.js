@@ -9,46 +9,6 @@
 // solve('abracadabra', 8) = 'rdr'
 // solve('abracadabra',50) = ''
 
-// const simpleLetterRemoval = (string, number) => {
-// 	if(number > string.length) {
-//   	return ""
-//   }
-//   let strCopy = string.slice()
-//   const strArray = Array.from(strCopy).sort()
-
-// 	strArray = strArray.slice(strArray.length - 1 - number, strArray.length)
-
-//  return strArray.sort((a, b) => {
-//       return string.indexOf(a) < string.indexOf(b)
-//   }).join("")
-//   // we have our characters removed, string just needs to be in right order
-
-// }
-
-// #1
-// 'wombat'
-// 'abmotw', 3
-// 'otw'
-// -> sort, remove characters, do something to make it in order
-
-// #2
-// recursive function
-
-// const simpleLetterRemoval = (string, number) => {
-//   if (number > string.length) {
-//     return "";
-//   }
-//   let strCopy = string.slice();
-//   let strArray = Array.from(strCopy).sort();
-
-//   strArray = strArray.slice(number, strArray.length);
-
-//   return strArray
-//     .sort((a, b) => {
-//       return string.indexOf(a) - string.indexOf(b);
-//     })
-//     .join("");
-// };
 const simpleLetterRemoval = (string, number) => {
   if (number > string.length) {
     return "";
@@ -58,13 +18,31 @@ const simpleLetterRemoval = (string, number) => {
 
   strArray = strArray.slice(number, strArray.length);
 
-  for (let i = 0; i < strArray.length; i++) {
-    strArray.sort((a, b) => {
+  return strArray
+    .sort((a, b) => {
       return string.indexOf(a) - string.indexOf(b);
-    });
-  }
-
-  return strArray.join("");
+    })
+    .join("");
 };
 
+simpleLetterRemoval("abracadabra", 2);
+simpleLetterRemoval("wombat", 3);
+
+//Revised Solution
+const simpleLetterRemoval = (string, number) => {
+  // If number is bigger than string length, return blank
+  if (number > string.length) {
+    return "";
+  }
+
+  //Grab unwanted chars
+  let removedChars = string.split("").sort().join("").slice(0, number);
+
+  //Go through and delete unwanted chars from string
+  for (let i = 0; i < number + 1; i++) {
+    string = string.replace(removedChars[i], "");
+  }
+  return string;
+};
+simpleLetterRemoval("abracadabra", 2);
 simpleLetterRemoval("wombat", 3);
