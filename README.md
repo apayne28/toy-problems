@@ -1,1 +1,1 @@
-This repo contains solutions from daily toy problem questions
+This repo contains solutions from toy problem questions
